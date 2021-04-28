@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="845.0"
+	prefWidth="1316.0"
+	style="-fx-background-color: white; -fx-border-width: 5; -fx-border-color: #28963c;"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<JFXDatePicker defaultColor="#28963c" layoutX="142.0"
+			layoutY="350.0" prefHeight="60.0" prefWidth="400.0" />
+	</children>
+</Pane>

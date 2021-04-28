@@ -6,7 +6,12 @@ import javafx.stage.Stage;
 
 public class StageEvent extends ApplicationEvent {
 
-    public StageEvent(Object source) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5763363209052774276L;
+
+	public StageEvent(Object source) {
         super(source);
     }
 

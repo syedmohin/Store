@@ -14,29 +14,28 @@ import javafx.stage.Stage;
 
 public class JavaFX extends Application {
 
-    private ConfigurableApplicationContext context;
+	private ConfigurableApplicationContext context;
 
-    @Override
-    public void init() throws Exception {
-        ApplicationContextInitializer<GenericApplicationContext> initializer = ac -> {
-            ac.registerBean(Application.class, () -> JavaFX.this);
-            ac.registerBean(Parameters.class, this::getParameters);
-            ac.registerBean(HostServices.class, this::getHostServices);
-        };
-        this.context = new SpringApplicationBuilder()
-                .sources(Main.class)
-                .initializers(initializer)
-                .run(getParameters().getRaw().toArray(new String[0]));
-    }
+	@Override
+	public void init() throws Exception {
+		ApplicationContextInitializer<GenericApplicationContext> initializer = ac -> {
+			ac.registerBean(Application.class, () -> JavaFX.this);
+			ac.registerBean(Parameters.class, this::getParameters);
+			ac.registerBean(HostServices.class, this::getHostServices);
+		};
+		this.context = new SpringApplicationBuilder().sources(Main.class).initializers(initializer)
+				.run(getParameters().getRaw().toArray(new String[0]));
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.context.publishEvent(new StageEvent(primaryStage));
-    }
+	@SuppressWarnings("exports")
+	@Override
+	public void start(final Stage primaryStage) throws Exception {
+		this.context.publishEvent(new StageEvent(primaryStage));
+	}
 
-    @Override
-    public void stop() throws Exception {
-        this.context.close();
-        Platform.exit();
-    }
+	@Override
+	public void stop() throws Exception {
+		this.context.close();
+		Platform.exit();
+	}
 }

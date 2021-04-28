@@ -7,11 +7,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Config {
 
-    @Bean
-    public CommandLineRunner runner() {
-        return args -> {
-        };
+	@Bean
+	public CommandLineRunner runner() {
+		return args -> {
+			
+		};
 
-    }
+	}
 
 }

@@ -18,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 
-//@Slf4j
 @FxmlView
 @Component
 
@@ -51,10 +50,10 @@ public class SplashController {
                 Platform.runLater(() -> {
                     try {
                         log.info(title);
-                        Stage stage = new Stage();
+                        var stage = new Stage();
                         stage.setTitle(title);
                         stage.getIcons().add(new Image(icon.getInputStream()));
-                        Scene scene = new Scene(fxWeaver.loadView(AuthenticatedController.class));
+                        var scene = new Scene(fxWeaver.loadView(AuthenticatedController.class));
                         stage.setScene(scene);
                         stage.initStyle(StageStyle.TRANSPARENT);
                         stage.show();

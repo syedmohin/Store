@@ -1,4 +1,4 @@
-package com.afc.configuration;
+package com.afc.utility;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

@@ -29,7 +29,6 @@ public class StageListener implements ApplicationListener<StageEvent> {
 	private final FxWeaver fxWeaver;
 	private Stage stage;
 	private static final Logger log = LoggerFactory.getLogger(StageListener.class);
-
 	public StageListener(FxWeaver fxWeaver) {
 		this.fxWeaver = fxWeaver;
 	}

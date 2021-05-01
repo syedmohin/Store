@@ -1,5 +1,6 @@
 package com.afc.controller;
 
+import static javafx.scene.input.KeyCode.ENTER;
 import static javafx.stage.StageStyle.UNDECORATED;
 
 import java.io.IOException;
@@ -14,9 +15,12 @@ import com.afc.alert.Alert;
 import com.afc.exception.UserNotFoundException;
 import com.afc.model.Users;
 import com.afc.repository.UsersRepository;
+import com.afc.validator.LengthValidation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.NumberValidator;
+import com.jfoenix.validation.RequiredFieldValidator;
 import com.password4j.Password;
 
 import javafx.event.Event;
@@ -24,7 +28,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -35,10 +38,10 @@ import net.rgielen.fxweaver.core.FxmlView;
 @Component
 public class AuthenticatedController {
 
-	private final static Logger log = LoggerFactory.getLogger(AuthenticatedController.class);
+	private static final Logger log = LoggerFactory.getLogger(AuthenticatedController.class);
 
 	@Value("${app.key}")
-	private String key;
+	private String keyAuth;
 	@Value("${app.title}")
 	private String title;
 
@@ -68,15 +71,49 @@ public class AuthenticatedController {
 		this.fxWeaver = fx;
 	}
 
+	@FXML
 	public void initialize() {
+		// Validators
+		var reqValidator = new RequiredFieldValidator("Field required");
+		var lengthValidator = new LengthValidation(4, "Field must be more than ");
+		var numberValidator = new NumberValidator("Field accept only number.");
+
+		// applying Validators
+		lu.getValidators().addAll(reqValidator, lengthValidator);
+		lu.focusedProperty().addListener((o, oldValue, newValue) -> {
+			if (!newValue)
+				lu.validate();
+		});
+		lp.getValidators().addAll(reqValidator, lengthValidator);
+		lp.focusedProperty().addListener((o, oldvalue, newValue) -> {
+			if (!newValue)
+				lp.validate();
+		});
+
+		su.getValidators().addAll(reqValidator, lengthValidator);
+		su.focusedProperty().addListener((o, oldValue, newValue) -> {
+			if (!newValue)
+				su.validate();
+		});
+		sp.getValidators().addAll(reqValidator, lengthValidator);
+		sp.focusedProperty().addListener((o, oldvalue, newValue) -> {
+			if (!newValue)
+				sp.validate();
+		});
+		sk.getValidators().addAll(reqValidator, numberValidator, lengthValidator);
+		sk.focusedProperty().addListener((o, oldvalue, newValue) -> {
+			if (!newValue)
+				sk.validate();
+		});
+
 		lb.setOnAction(ae -> login());
 		lp.setOnKeyPressed(ae -> {
-			if (ae.getCode() == KeyCode.ENTER)
+			if (ae.getCode() == ENTER)
 				login();
 		});
 		sb.setOnAction(ae -> signUp());
 		sk.setOnKeyPressed(ae -> {
-			if (ae.getCode() == KeyCode.ENTER)
+			if (ae.getCode() == ENTER)
 				signUp();
 		});
 	}
@@ -88,7 +125,7 @@ public class AuthenticatedController {
 		if (usersRepo.existsByUsername(user)) {
 			Alert.info("User already exist with that username.", root);
 		} else {
-			if (key.equals(this.key)) {
+			if (key.equals(this.keyAuth)) {
 				if (save(new Users(user, password)) != null) {
 					Alert.info("Registration Completed", root);
 					login.toFront();
@@ -109,6 +146,7 @@ public class AuthenticatedController {
 			if (checkUserAuth(user, password)) {
 				lu.getScene().getWindow().hide();
 				Stage stage = new Stage();
+				System.setProperty("name", user);
 				stage.setTitle(title);
 				try {
 					stage.getIcons().add(new Image(new ClassPathResource("image/icon.png").getInputStream()));

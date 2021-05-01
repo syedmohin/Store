@@ -12,113 +12,131 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<Pane id="AnchorPane" fx:id="root" prefHeight="551.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.afc.controller.AuthenticatedController">
+<Pane id="AnchorPane" fx:id="root" prefHeight="551.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.afc.controller.AuthenticatedController">
     <children>
-        <AnchorPane fx:id="signup" layoutX="335.0" prefHeight="558.0" prefWidth="359.0" style="-fx-background-color: white; -fx-border-width: 5; -fx-border-color: #28963c;">
+        <AnchorPane fx:id="signup" layoutX="335.0" prefHeight="558.0" prefWidth="359.0"
+                    style="-fx-background-color: white;">
             <children>
                 <Label layoutX="45.0" layoutY="60.0" text="SignUp" textFill="#28963c">
                     <font>
-                        <Font name="System Bold Italic" size="25.0" />
+                        <Font name="System Bold Italic" size="25.0"/>
                     </font>
                 </Label>
-                <JFXTextField fx:id="su" focusColor="#28963c" labelFloat="true" layoutX="68.0" layoutY="162.0" prefHeight="40.0" prefWidth="240.0" promptText="Enter Username">
+                <JFXTextField fx:id="su" focusColor="#28963c" labelFloat="true" layoutX="68.0" layoutY="162.0"
+                              prefHeight="40.0" prefWidth="240.0" promptText="Enter Username">
                     <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                     </font>
                 </JFXTextField>
-                <JFXPasswordField fx:id="sp" focusColor="#28963c" labelFloat="true" layoutX="68.0" layoutY="240.0" prefHeight="40.0" prefWidth="240.0" promptText="Enter Password">
+                <JFXPasswordField fx:id="sp" focusColor="#28963c" labelFloat="true" layoutX="68.0" layoutY="240.0"
+                                  prefHeight="40.0" prefWidth="240.0" promptText="Enter Password">
                     <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                     </font>
                 </JFXPasswordField>
-                <JFXPasswordField fx:id="sk" focusColor="#28963c" labelFloat="true" layoutX="68.0" layoutY="318.0" prefHeight="40.0" prefWidth="240.0" promptText="Enter Key">
+                <JFXPasswordField fx:id="sk" focusColor="#28963c" labelFloat="true" layoutX="68.0" layoutY="318.0"
+                                  prefHeight="40.0" prefWidth="240.0" promptText="Enter Key">
                     <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                     </font>
                 </JFXPasswordField>
-                <JFXButton fx:id="sb" buttonType="RAISED" layoutX="53.0" layoutY="417.0" prefHeight="40.0" prefWidth="255.0" ripplerFill="WHITE" style="-fx-background-color: #28963c;" text="SignUp">
+                <JFXButton fx:id="sb" buttonType="RAISED" layoutX="53.0" layoutY="417.0" prefHeight="40.0"
+                           prefWidth="255.0" ripplerFill="WHITE" style="-fx-background-color: #28963c;" text="SignUp">
                     <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="16.0"/>
                     </font>
                     <graphic>
-                        <FontIcon iconLiteral="mdi2l-login-variant" iconSize="20" />
+                        <FontIcon iconLiteral="mdi2l-login-variant" iconSize="20"/>
                     </graphic>
                 </JFXButton>
-            <Label fx:id="sl" layoutX="115.0" layoutY="467.0" onKeyPressed="#loginShow" onMouseClicked="#loginShow" prefHeight="25.0" prefWidth="137.0" text="Have Account ?">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <graphic>
-                  <FontIcon iconLiteral="mdi2a-account-alert" />
-               </graphic>
-            </Label>
-            <FontIcon iconColor="#28963c" iconLiteral="mdi2a-account" iconSize="32" layoutX="35.0" layoutY="198.0" />
-            <FontIcon iconColor="#28963c" iconLiteral="mdi2o-onepassword" iconSize="28" layoutX="35.0" layoutY="271.0" />
-            <FontIcon iconColor="#28963c" iconLiteral="mdi2k-key" iconSize="28" layoutX="34.0" layoutY="351.0" />
+                <Label fx:id="sl" layoutX="115.0" layoutY="467.0" onKeyPressed="#loginShow" onMouseClicked="#loginShow"
+                       prefHeight="25.0" prefWidth="137.0" text="Have Account ?">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2a-account-alert"/>
+                    </graphic>
+                </Label>
+                <FontIcon iconColor="#28963c" iconLiteral="mdi2a-account" iconSize="32" layoutX="35.0" layoutY="198.0"/>
+                <FontIcon iconColor="#28963c" iconLiteral="mdi2o-onepassword" iconSize="28" layoutX="35.0"
+                          layoutY="271.0"/>
+                <FontIcon iconColor="#28963c" iconLiteral="mdi2k-key" iconSize="28" layoutX="34.0" layoutY="351.0"/>
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="558.0" prefWidth="335.0" style="-fx-background-color: #28963c;">
             <children>
-                <ImageView fitHeight="150.0" fitWidth="185.0" layoutX="85.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="185.0" layoutX="85.0" layoutY="94.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@../../../image/icon.png" />
+                        <Image url="@../../../image/icon.png"/>
                     </image>
                 </ImageView>
                 <Label layoutX="212.0" layoutY="525.0" text="isDone Solution" textFill="WHITE">
                     <font>
-                        <Font name="HP Simplified Bold Italic" size="16.0" />
+                        <Font name="HP Simplified Bold Italic" size="16.0"/>
                     </font>
                 </Label>
-            <Label layoutX="29.0" layoutY="262.0" text="Azeem Fruit Company" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Label>
-            <Label layoutX="106.0" layoutY="310.0" text="Sattarbagh HYD" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
+                <Label layoutX="29.0" layoutY="262.0" text="Azeem Fruit Company" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="27.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="106.0" layoutY="310.0" text="Sattarbagh HYD" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="18.0"/>
+                    </font>
+                </Label>
             </children>
-         <effect>
-            <DropShadow />
-         </effect>
+            <effect>
+                <DropShadow/>
+            </effect>
         </AnchorPane>
-        <AnchorPane fx:id="login" layoutX="335.0" prefHeight="558.0" prefWidth="367.0" style="-fx-background-color: white;">
+        <AnchorPane fx:id="login" layoutX="335.0" prefHeight="558.0" prefWidth="367.0"
+                    style="-fx-background-color: white;">
             <children>
-                <Label layoutX="45.0" layoutY="60.0" prefHeight="36.0" prefWidth="109.0" text="Login" textFill="#28963c">
+                <Label layoutX="45.0" layoutY="60.0" prefHeight="36.0" prefWidth="109.0" text="Login"
+                       textFill="#28963c">
                     <font>
-                        <Font name="System Bold Italic" size="25.0" />
+                        <Font name="System Bold Italic" size="25.0"/>
                     </font>
                 </Label>
-                <JFXTextField fx:id="lu" focusColor="#28963c" labelFloat="true" layoutX="71.0" layoutY="196.0" prefHeight="40.0" prefWidth="240.0" promptText="Enter Username">
+                <JFXTextField fx:id="lu" focusColor="#28963c" labelFloat="true" layoutX="71.0" layoutY="196.0"
+                              prefHeight="40.0" prefWidth="240.0" promptText="Enter Username">
                     <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                     </font>
                 </JFXTextField>
-                <JFXPasswordField fx:id="lp" focusColor="#28963c" labelFloat="true" layoutX="71.0" layoutY="277.0" prefHeight="40.0" prefWidth="240.0" promptText="Enter Password">
+                <JFXPasswordField fx:id="lp" focusColor="#28963c" labelFloat="true" layoutX="71.0" layoutY="277.0"
+                                  prefHeight="40.0" prefWidth="240.0" promptText="Enter Password">
                     <font>
-                        <Font size="16.0" />
+                        <Font size="16.0"/>
                     </font>
                 </JFXPasswordField>
-                <JFXButton fx:id="lb" buttonType="RAISED" layoutX="39.0" layoutY="404.0" prefHeight="40.0" prefWidth="272.0" ripplerFill="WHITE" style="-fx-background-color: #28963c;" text="Login" textAlignment="CENTER">
+                <JFXButton fx:id="lb" buttonType="RAISED" layoutX="39.0" layoutY="404.0" prefHeight="40.0"
+                           prefWidth="272.0" ripplerFill="WHITE" style="-fx-background-color: #28963c;" text="Login"
+                           textAlignment="CENTER">
                     <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="16.0"/>
                     </font>
-               <graphic>
-                  <FontIcon iconLiteral="mdi2l-login" iconSize="20" />
-               </graphic>
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2l-login" iconSize="20"/>
+                    </graphic>
                 </JFXButton>
-            <Label fx:id="ca" layoutX="113.0" layoutY="456.0" onKeyPressed="#signUpShow" onMouseClicked="#signUpShow" prefHeight="25.0" prefWidth="137.0" text="Create Account">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <graphic>
-                  <FontIcon iconLiteral="mdi2a-account-alert" />
-               </graphic>
-            </Label>
-            <FontIcon iconColor="#28963c" iconLiteral="mdi2a-account" iconSize="32" layoutX="32.0" layoutY="231.0" wrappingWidth="33.0" />
-            <FontIcon iconColor="#28963c" iconLiteral="mdi2o-onepassword" iconSize="28" layoutX="33.0" layoutY="314.0" />
+                <Label fx:id="ca" layoutX="113.0" layoutY="456.0" onKeyPressed="#signUpShow"
+                       onMouseClicked="#signUpShow" prefHeight="25.0" prefWidth="137.0" text="Create Account">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2a-account-alert"/>
+                    </graphic>
+                </Label>
+                <FontIcon iconColor="#28963c" iconLiteral="mdi2a-account" iconSize="32" layoutX="32.0" layoutY="231.0"
+                          wrappingWidth="33.0"/>
+                <FontIcon iconColor="#28963c" iconLiteral="mdi2o-onepassword" iconSize="28" layoutX="33.0"
+                          layoutY="314.0"/>
             </children>
         </AnchorPane>
     </children>

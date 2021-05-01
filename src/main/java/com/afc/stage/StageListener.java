@@ -39,7 +39,7 @@ public class StageListener implements ApplicationListener<StageEvent> {
 			stage = event.getStage();
 			stage.setTitle(title);
 			stage.getIcons().add(new Image(new ClassPathResource("image/icon.png").getInputStream()));
-			Scene scene = new Scene(fxWeaver.loadView(SplashController.class));
+			var scene = new Scene(fxWeaver.loadView(SplashController.class));
 			stage.initStyle(UNDECORATED);
 			stage.setScene(scene);
 			stage.centerOnScreen();

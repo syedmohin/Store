@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import com.afc.alert.Alert;
 import com.afc.exception.UserNotFoundException;
 import com.afc.model.Users;
 import com.afc.repository.UsersRepository;
-import com.afc.validator.LengthValidation;
+import com.afc.utility.Alert;
+import com.afc.utility.LengthValidation;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;

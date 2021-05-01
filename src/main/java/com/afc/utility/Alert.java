@@ -1,4 +1,4 @@
-package com.afc.alert;
+package com.afc.utility;
 
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;

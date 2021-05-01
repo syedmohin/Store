@@ -1,4 +1,4 @@
-package com.afc.validator;
+package com.afc.utility;
 
 import com.jfoenix.validation.base.ValidatorBase;
 

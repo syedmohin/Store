@@ -5,6 +5,12 @@ import static javafx.scene.paint.Color.BLUE;
 import static javafx.scene.paint.Color.RED;
 import static javafx.stage.Modality.APPLICATION_MODAL;
 
+import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
+
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -20,6 +26,8 @@ public class Alert {
 	}
 
 	private static final String OKAY = "Okay!";
+	private static final Logger log = LoggerFactory.getLogger(Alert.class);
+	private static final String FONT_LOCATION = "/fonts/Mono.ttf";
 
 	public static void error(String msg, Pane root) {
 		var alert = alert(root);
@@ -43,7 +51,11 @@ public class Alert {
 
 	public static JFXButton button(JFXAlert<String> alert, String msg) {
 		var btn = new JFXButton(msg);
-		btn.setFont(new Font(15));
+		try {
+			btn.setFont(Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 10));
+		} catch (IOException e1) {
+			log.error("Unable to Load Font!! {}", e1.getMessage());
+		}
 		btn.setButtonType(RAISED);
 		btn.setRipplerFill(RED);
 		btn.setCancelButton(true);
@@ -63,10 +75,14 @@ public class Alert {
 	public static JFXDialogLayout layout(String msg, String alertType) {
 		var layout = new JFXDialogLayout();
 		var label = new Label(alertType);
-		label.setFont(new Font(22));
 		layout.setHeading(label);
 		var msgLabel = new Label(msg);
-		msgLabel.setFont(new Font(15));
+		try {
+			label.setFont(Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 22));
+			msgLabel.setFont(Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 15));
+		} catch (IOException e) {
+			log.error("Unable to Load Font!! {}", e.getMessage());
+		}
 		layout.setBody(new VBox(msgLabel));
 		return layout;
 	}

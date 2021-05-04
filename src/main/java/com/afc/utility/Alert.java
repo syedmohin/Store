@@ -28,6 +28,16 @@ public class Alert {
 	private static final String OKAY = "Okay!";
 	private static final Logger log = LoggerFactory.getLogger(Alert.class);
 	private static final String FONT_LOCATION = "/fonts/Mono.ttf";
+	private static Font FONT_22;
+	private static Font FONT_15;
+	static {
+		try {
+			FONT_22 = Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 22);
+			FONT_15 = Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 15);
+		} catch (IOException e) {
+			log.error("Unable to Load Font!! {}", e.getMessage());
+		}
+	}
 
 	public static void error(String msg, Pane root) {
 		var alert = alert(root);
@@ -51,11 +61,7 @@ public class Alert {
 
 	public static JFXButton button(JFXAlert<String> alert, String msg) {
 		var btn = new JFXButton(msg);
-		try {
-			btn.setFont(Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 10));
-		} catch (IOException e1) {
-			log.error("Unable to Load Font!! {}", e1.getMessage());
-		}
+		btn.setFont(FONT_15);
 		btn.setButtonType(RAISED);
 		btn.setRipplerFill(RED);
 		btn.setCancelButton(true);
@@ -77,12 +83,8 @@ public class Alert {
 		var label = new Label(alertType);
 		layout.setHeading(label);
 		var msgLabel = new Label(msg);
-		try {
-			label.setFont(Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 22));
-			msgLabel.setFont(Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 15));
-		} catch (IOException e) {
-			log.error("Unable to Load Font!! {}", e.getMessage());
-		}
+		label.setFont(FONT_22);
+		msgLabel.setFont(FONT_15);
 		layout.setBody(new VBox(msgLabel));
 		return layout;
 	}

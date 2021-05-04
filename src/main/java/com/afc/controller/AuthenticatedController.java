@@ -1,8 +1,5 @@
 package com.afc.controller;
 
-import static javafx.scene.input.KeyCode.ENTER;
-import static javafx.stage.StageStyle.UNDECORATED;
-
 import java.io.IOException;
 
 import org.slf4j.Logger;
@@ -28,9 +25,11 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 
@@ -46,22 +45,34 @@ public class AuthenticatedController {
 	private String title;
 
 	@FXML
-	private AnchorPane login, signup;
+	private AnchorPane login;
+	@FXML
+	private AnchorPane signup;
 
 	@FXML
 	private Pane root;
 
 	@FXML
-	private JFXTextField su, lu;
+	private JFXTextField su;
+	@FXML
+	private JFXTextField lu;
 
 	@FXML
-	private JFXPasswordField sk, sp, lp;
+	private JFXPasswordField sk;
+	@FXML
+	private JFXPasswordField sp;
+	@FXML
+	private JFXPasswordField lp;
 
 	@FXML
-	private JFXButton sb, lb;
+	private JFXButton sb;
+	@FXML
+	private JFXButton lb;
 
 	@FXML
-	private Label sl, ca;
+	private Label sl;
+	@FXML
+	private Label ca;
 
 	private final UsersRepository usersRepo;
 	private final FxWeaver fxWeaver;
@@ -73,6 +84,23 @@ public class AuthenticatedController {
 
 	@FXML
 	public void initialize() {
+		controlValid();
+
+		lb.setOnAction(ae -> login());
+		lp.setOnKeyPressed(ae -> {
+			if (ae.getCode() == KeyCode.ENTER)
+				login();
+		});
+		sb.setOnAction(ae -> signUp());
+		sk.setOnKeyPressed(ae -> {
+			if (ae.getCode() == KeyCode.ENTER)
+				signUp();
+		});
+	}
+
+	public void controlValid() {
+
+		lb.setDisable(false);
 		// Validators
 		var reqValidator = new RequiredFieldValidator("Field required");
 		var lengthValidator = new LengthValidation(4, "Field must be more than ");
@@ -84,10 +112,16 @@ public class AuthenticatedController {
 			if (!newValue)
 				lu.validate();
 		});
+		lu.textProperty().addListener((o, oldValue, newValue) -> {
+			lu.validate();
+		});
 		lp.getValidators().addAll(reqValidator, lengthValidator);
 		lp.focusedProperty().addListener((o, oldvalue, newValue) -> {
 			if (!newValue)
 				lp.validate();
+		});
+		lp.textProperty().addListener((o, oldValue, newValue) -> {
+			lp.validate();
 		});
 
 		su.getValidators().addAll(reqValidator, lengthValidator);
@@ -95,33 +129,30 @@ public class AuthenticatedController {
 			if (!newValue)
 				su.validate();
 		});
+		su.textProperty().addListener((o, oldValue, newValue) -> {
+			su.validate();
+		});
 		sp.getValidators().addAll(reqValidator, lengthValidator);
 		sp.focusedProperty().addListener((o, oldvalue, newValue) -> {
 			if (!newValue)
 				sp.validate();
+		});
+		sp.textProperty().addListener((o, oldValue, newValue) -> {
+			sp.validate();
 		});
 		sk.getValidators().addAll(reqValidator, numberValidator, lengthValidator);
 		sk.focusedProperty().addListener((o, oldvalue, newValue) -> {
 			if (!newValue)
 				sk.validate();
 		});
-
-		lb.setOnAction(ae -> login());
-		lp.setOnKeyPressed(ae -> {
-			if (ae.getCode() == ENTER)
-				login();
-		});
-		sb.setOnAction(ae -> signUp());
-		sk.setOnKeyPressed(ae -> {
-			if (ae.getCode() == ENTER)
-				signUp();
+		sk.textProperty().addListener((o, oldValue, newValue) -> {
+			sk.validate();
 		});
 	}
-
 	public void signUp() {
-		String user = su.getText();
-		String password = sp.getText();
-		String key = sk.getText();
+		var user = su.getText();
+		var password = sp.getText();
+		var key = sk.getText();
 		if (usersRepo.existsByUsername(user)) {
 			Alert.info("User already exist with that username.", root);
 		} else {
@@ -145,7 +176,7 @@ public class AuthenticatedController {
 		try {
 			if (checkUserAuth(user, password)) {
 				lu.getScene().getWindow().hide();
-				Stage stage = new Stage();
+				var stage = new Stage();
 				System.setProperty("name", user);
 				stage.setTitle(title);
 				try {
@@ -154,7 +185,7 @@ public class AuthenticatedController {
 					log.error("unable to add icon");
 				}
 				Scene scene = new Scene(fxWeaver.loadView(MainController.class));
-				stage.initStyle(UNDECORATED);
+				stage.initStyle(StageStyle.UNDECORATED);
 				stage.setScene(scene);
 				stage.centerOnScreen();
 				stage.show();
@@ -199,8 +230,6 @@ public class AuthenticatedController {
 	}
 
 	public boolean checkUserAuth(String username, String pass) throws UserNotFoundException {
-		boolean b = Password.check(pass, getPassword(username)).withBCrypt();
-		System.out.println(b);
-		return b;
+		return Password.check(pass, getPassword(username)).withBCrypt();
 	}
 }

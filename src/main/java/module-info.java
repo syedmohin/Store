@@ -61,7 +61,7 @@ module AFCStore {
     requires com.jfoenix;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.core;
-    requires org.kordamp.ikonli.materialdesign2;
+	requires org.kordamp.ikonli.materialdesign2;
     requires org.controlsfx.controls;
     requires javafx.weaver.spring.boot.starter;
     requires net.rgielen.fxweaver.spring;

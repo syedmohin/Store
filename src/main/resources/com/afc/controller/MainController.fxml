@@ -34,12 +34,12 @@
 						<Image url="@../../../image/icon_large.png" />
 					</image>
 				</ImageView>
-            <JFXButton layoutY="213.0" onAction="#customerDisplay" prefHeight="40.0" prefWidth="180.0" ripplerFill="WHITE" style="-fx-border-width: 2; -fx-border-color: white;" text="Customer" textFill="WHITE" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="213.0">
+            <JFXButton layoutY="213.0" onAction="#customerDisplay" prefHeight="40.0" prefWidth="180.0" ripplerFill="WHITE" text="Customer" textFill="WHITE" AnchorPane.bottomAnchor="466.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="213.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutY="260.0" onAction="#stockDisplay" prefHeight="40.0" prefWidth="180.0" ripplerFill="WHITE" style="-fx-border-color: white; -fx-border-width: 2;" text="Stock" textFill="WHITE" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
+            <JFXButton layoutY="260.0" onAction="#stockDisplay" prefHeight="40.0" prefWidth="180.0" ripplerFill="WHITE" text="Stock" textFill="WHITE" AnchorPane.bottomAnchor="425.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

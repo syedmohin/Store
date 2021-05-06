@@ -100,7 +100,6 @@ public class AuthenticatedController {
 
 	public void controlValid() {
 
-		lb.setDisable(false);
 		// Validators
 		var reqValidator = new RequiredFieldValidator("Field required");
 		var lengthValidator = new LengthValidation(4, "Field must be more than ");
@@ -108,83 +107,64 @@ public class AuthenticatedController {
 
 		// applying Validators
 		lu.getValidators().addAll(reqValidator, lengthValidator);
-		lu.focusedProperty().addListener((o, oldValue, newValue) -> {
-			if (!newValue)
-				lu.validate();
-		});
-		lu.textProperty().addListener((o, oldValue, newValue) -> {
-			lu.validate();
-		});
+		lu.focusedProperty().addListener((o, oldValue, newValue) -> focusedValid(newValue));
+		lu.textProperty().addListener((o, oldValue, newValue) -> lu.validate());
+
 		lp.getValidators().addAll(reqValidator, lengthValidator);
-		lp.focusedProperty().addListener((o, oldvalue, newValue) -> {
-			if (!newValue)
-				lp.validate();
-		});
-		lp.textProperty().addListener((o, oldValue, newValue) -> {
-			lp.validate();
-		});
+		lp.focusedProperty().addListener((o, oldvalue, newValue) -> textValid(newValue));
+		lp.textProperty().addListener((o, oldValue, newValue) -> lp.validate());
 
 		su.getValidators().addAll(reqValidator, lengthValidator);
-		su.focusedProperty().addListener((o, oldValue, newValue) -> {
-			if (!newValue)
-				su.validate();
-		});
-		su.textProperty().addListener((o, oldValue, newValue) -> {
-			su.validate();
-		});
+		su.focusedProperty().addListener((o, oldValue, newValue) -> focusedValid(newValue));
+		su.textProperty().addListener((o, oldValue, newValue) -> su.validate());
+
 		sp.getValidators().addAll(reqValidator, lengthValidator);
-		sp.focusedProperty().addListener((o, oldvalue, newValue) -> {
-			if (!newValue)
-				sp.validate();
-		});
-		sp.textProperty().addListener((o, oldValue, newValue) -> {
-			sp.validate();
-		});
+		sp.focusedProperty().addListener((o, oldvalue, newValue) -> focusedValid(newValue));
+		sp.textProperty().addListener((o, oldValue, newValue) -> sp.validate());
+
 		sk.getValidators().addAll(reqValidator, numberValidator, lengthValidator);
-		sk.focusedProperty().addListener((o, oldvalue, newValue) -> {
-			if (!newValue)
-				sk.validate();
-		});
-		sk.textProperty().addListener((o, oldValue, newValue) -> {
-			sk.validate();
-		});
+		sk.focusedProperty().addListener((o, oldvalue, newValue) -> focusedValid(newValue));
+		sk.textProperty().addListener((o, oldValue, newValue) -> sk.validate());
 	}
+
+	private void textValid(Boolean newValue) {
+		if (!newValue)
+			lp.validate();
+	}
+
+	private void focusedValid(Boolean newValue) {
+		if (!newValue)
+			lu.validate();
+	}
+
 	public void signUp() {
 		var user = su.getText();
 		var password = sp.getText();
 		var key = sk.getText();
-		if (usersRepo.existsByUsername(user)) {
+		if (usersRepo.existsByUsername(user))
 			Alert.info("User already exist with that username.", root);
-		} else {
-			if (key.equals(this.keyAuth)) {
-				if (save(new Users(user, password)) != null) {
-					Alert.info("Registration Completed", root);
-					login.toFront();
-					signup.toBack();
-				} else {
-					Alert.error("Unable to save User Try Again Later..", root);
-				}
-			} else {
-				Alert.error("Wrong key", root);
-			}
-		}
+		else if (key.equals(this.keyAuth)) {
+			if (save(new Users(user, password)) != null) {
+				Alert.info("Registration Completed", root);
+				login.toFront();
+				signup.toBack();
+			} else
+				Alert.error("Unable to save User Try Again Later..", root);
+		} else
+			Alert.error("Wrong key", root);
 	}
 
 	public void login() {
-		String user = lu.getText();
-		String password = lp.getText();
+		var user = lu.getText();
+		var password = lp.getText();
 		try {
 			if (checkUserAuth(user, password)) {
 				lu.getScene().getWindow().hide();
 				var stage = new Stage();
 				System.setProperty("name", user);
 				stage.setTitle(title);
-				try {
-					stage.getIcons().add(new Image(new ClassPathResource("image/icon.png").getInputStream()));
-				} catch (IOException e) {
-					log.error("unable to add icon");
-				}
-				Scene scene = new Scene(fxWeaver.loadView(MainController.class));
+				setIcon(stage);
+				var scene = new Scene(fxWeaver.loadView(MainController.class));
 				stage.initStyle(StageStyle.UNDECORATED);
 				stage.setScene(scene);
 				stage.centerOnScreen();
@@ -196,6 +176,14 @@ public class AuthenticatedController {
 		} catch (UserNotFoundException e) {
 			Alert.error("Username and Password is incorrect..", root);
 			log.error("Username and Password is incorrect.. {}", e.getMessage());
+		}
+	}
+
+	private void setIcon(Stage stage) {
+		try {
+			stage.getIcons().add(new Image(new ClassPathResource("image/icon.png").getInputStream()));
+		} catch (IOException e) {
+			log.error("unable to add icon");
 		}
 	}
 

@@ -5,12 +5,6 @@ import static javafx.scene.paint.Color.BLUE;
 import static javafx.scene.paint.Color.RED;
 import static javafx.stage.Modality.APPLICATION_MODAL;
 
-import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
-
 import com.jfoenix.controls.JFXAlert;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialogLayout;
@@ -19,27 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 
 public class Alert {
 	private Alert() {
 	}
 
 	private static final String OKAY = "Okay!";
-	private static final Logger log = LoggerFactory.getLogger(Alert.class);
-	private static final String FONT_LOCATION = "/fonts/Mono.ttf";
-	private static Font FONT_22;
-	private static Font FONT_15;
-	static {
-		try {
-			FONT_22 = Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 22);
-			FONT_15 = Font.loadFont(new ClassPathResource(FONT_LOCATION).getInputStream(), 15);
-		} catch (IOException e) {
-			log.error("Unable to Load Font!! {}", e.getMessage());
-		}
-	}
-
-	public static void error(String msg, Pane root) {
+		public static void error(String msg, Pane root) {
 		var alert = alert(root);
 		var layout = layout(msg, "Error");
 		var btn = button(alert, OKAY);
@@ -61,7 +41,6 @@ public class Alert {
 
 	public static JFXButton button(JFXAlert<String> alert, String msg) {
 		var btn = new JFXButton(msg);
-		btn.setFont(FONT_15);
 		btn.setButtonType(RAISED);
 		btn.setRipplerFill(RED);
 		btn.setCancelButton(true);
@@ -83,8 +62,6 @@ public class Alert {
 		var label = new Label(alertType);
 		layout.setHeading(label);
 		var msgLabel = new Label(msg);
-		label.setFont(FONT_22);
-		msgLabel.setFont(FONT_15);
 		layout.setBody(new VBox(msgLabel));
 		return layout;
 	}

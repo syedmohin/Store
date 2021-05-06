@@ -20,9 +20,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 
 @FxmlView
 @Component
-
 public class SplashController {
-
 
 	@FXML
 	private AnchorPane root;
@@ -63,6 +61,7 @@ public class SplashController {
 				});
 			} catch (InterruptedException ex) {
 				log.error(ex.getMessage());
+				Thread.currentThread().interrupt();
 			}
 		}
 	}

@@ -66,7 +66,7 @@ public class CustomerAmount {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CustomerAmount other = (CustomerAmount) obj;
+		var other = (CustomerAmount) obj;
 		return Objects.equals(amount, other.amount) && Objects.equals(date, other.date) && Objects.equals(id, other.id);
 	}
 

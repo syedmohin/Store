@@ -71,6 +71,5 @@ module AFCStore {
     requires com.fasterxml.aalto;
     requires org.codehaus.stax2;
     requires org.apache.commons.compress;
-//    requires jakarta.activation;
     requires password4j;
 }

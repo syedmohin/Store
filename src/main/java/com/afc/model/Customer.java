@@ -22,6 +22,7 @@ public class Customer {
 	private String name;
 	@Column(unique = true)
 	private String billId;
+	private String mobile;
 	private Integer weight;
 	private Integer rate;
 	private Integer crate;
@@ -35,17 +36,19 @@ public class Customer {
 	public Customer() {
 	}
 
-	public Customer(Integer id, String name, String billId, Integer weight, Integer rate, Integer crate,
-			Integer returnCrate, Integer totalAmount, Integer balance) {
+	public Customer(Integer id, String name, String billId, String mobile, Integer weight, Integer rate, Integer crate,
+			Integer returnCrate, Integer totalAmount, Integer balance, List<CustomerAmount> customerAmounts) {
 		this.id = id;
 		this.name = name;
 		this.billId = billId;
+		this.mobile = mobile;
 		this.weight = weight;
 		this.rate = rate;
 		this.crate = crate;
 		this.returnCrate = returnCrate;
 		this.totalAmount = totalAmount;
 		this.balance = balance;
+		this.customerAmounts = customerAmounts;
 	}
 
 	public Integer getId() {
@@ -96,6 +99,14 @@ public class Customer {
 		this.crate = crate;
 	}
 
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
 	public Integer getReturnCrate() {
 		return returnCrate;
 	}
@@ -139,7 +150,7 @@ public class Customer {
 			return true;
 		if (!(obj instanceof Customer))
 			return false;
-		Customer other = (Customer) obj;
+		var other = (Customer) obj;
 		return Objects.equals(balance, other.balance) && Objects.equals(billId, other.billId)
 				&& Objects.equals(crate, other.crate) && Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name) && Objects.equals(rate, other.rate)

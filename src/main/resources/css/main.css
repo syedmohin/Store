@@ -1,9 +1,17 @@
 .main{
     -fx-color:blue;
 }
-.exit{
-    -fx-background-color:blue;
+.text{
+	-fx-text-fill:white;
 }
-.exit:hover{
-    -fx-background-color:red;
+.text:hover{
+	-fx-prompt-text-fill:white;
+	-fx-text-fill:white;
+}
+main-text{
+	-fx-text-fill:#28963c;
+}
+main-text:hover{
+	-fx-prompt-text-fill:#28963c;
+	-fx-text-fill:#28963c;
 }

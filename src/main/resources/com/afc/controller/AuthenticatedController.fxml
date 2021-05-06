@@ -112,7 +112,8 @@
 		</AnchorPane>
 		<AnchorPane fx:id="login" layoutX="335.0"
 			prefHeight="558.0" prefWidth="367.0"
-			style="-fx-background-color: white;">
+			style="-fx-background-color: white;"
+			stylesheets="@../../../css/main.css">
 			<children>
 				<Label layoutX="45.0" layoutY="60.0" prefHeight="36.0"
 					prefWidth="109.0" text="Login" textFill="#28963c">
@@ -122,14 +123,16 @@
 				</Label>
 				<JFXTextField fx:id="lu" focusColor="#28963c"
 					labelFloat="true" layoutX="71.0" layoutY="196.0" prefHeight="40.0"
-					prefWidth="240.0" promptText="Enter Username">
+					prefWidth="240.0" promptText="Enter Username" styleClass="main"
+					stylesheets="@../../../css/main.css">
 					<font>
 						<Font size="16.0" />
 					</font>
 				</JFXTextField>
 				<JFXPasswordField fx:id="lp" focusColor="#28963c"
 					labelFloat="true" layoutX="71.0" layoutY="277.0" prefHeight="40.0"
-					prefWidth="240.0" promptText="Enter Password">
+					prefWidth="240.0" promptText="Enter Password" styleClass="main"
+					stylesheets="@../../../css/main.css">
 					<font>
 						<Font size="16.0" />
 					</font>

@@ -3,12 +3,14 @@ package com.afc.model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class CustomerTable {
+public class CustomerTable extends RecursiveTreeObject<CustomerTable> {
 	private StringProperty billId;
 	private StringProperty name;
 	private IntegerProperty weigth;
@@ -18,11 +20,12 @@ public class CustomerTable {
 	private IntegerProperty totalAmount;
 	private IntegerProperty balance;
 	private StringProperty date;
+	private StringProperty mobile;
 
-	private static final DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-YYYY");
+	private static final DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 	public CustomerTable(String billId, String name, Integer weigth, Integer rate, Integer crate, Integer returnCrate,
-			Integer totalAmount, Integer balance, LocalDate date) {
+			Integer totalAmount, Integer balance, LocalDate date, String mobile) {
 		this.billId = new SimpleStringProperty(billId);
 		this.name = new SimpleStringProperty(name);
 		this.weigth = new SimpleIntegerProperty(weigth);
@@ -32,6 +35,7 @@ public class CustomerTable {
 		this.totalAmount = new SimpleIntegerProperty(totalAmount);
 		this.balance = new SimpleIntegerProperty(balance);
 		this.date = new SimpleStringProperty(pattern.format(date));
+		this.mobile = new SimpleStringProperty(mobile);
 	}
 
 	public CustomerTable(Customer customer) {
@@ -45,6 +49,7 @@ public class CustomerTable {
 		this.totalAmount = new SimpleIntegerProperty(getTotalAmount());
 		this.balance = new SimpleIntegerProperty(customer.getBalance());
 		this.date = new SimpleStringProperty(pattern.format(amounts.get(amounts.size() - 1).getDate()));
+		this.mobile = new SimpleStringProperty(customer.getMobile());
 	}
 
 	public final StringProperty billIdProperty() {
@@ -153,6 +158,18 @@ public class CustomerTable {
 
 	public final void setDate(final LocalDate date) {
 		this.dateProperty().set(pattern.format(date));
+	}
+
+	public final StringProperty mobileProperty() {
+		return this.mobile;
+	}
+
+	public final String getMobile() {
+		return this.mobile.get();
+	}
+
+	public final void setMobile(final String mobile) {
+		this.mobile.set(mobile);
 	}
 
 }

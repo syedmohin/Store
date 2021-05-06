@@ -15,21 +15,17 @@ public class LengthValidation extends ValidatorBase {
 
 	@Override
 	protected void eval() {
-		if (srcControl.get() instanceof TextInputControl) {
+		if (srcControl.get() instanceof TextInputControl)
 			evalTextInputField();
-		}
 	}
 
 	private void evalTextInputField() {
-		TextInputControl textField = (TextInputControl) srcControl.get();
-		String text = textField.getText();
+		var textField = (TextInputControl) srcControl.get();
+		var text = textField.getText();
 		hasErrors.set(false);
 
-		if (!text.isEmpty()) {
-			if (text.length() < stringLength - 1) {
-				hasErrors.set(true);
-			}
-		}
+		if (!text.isEmpty() && text.length() < stringLength - 1)
+			hasErrors.set(true);
 	}
 
 }

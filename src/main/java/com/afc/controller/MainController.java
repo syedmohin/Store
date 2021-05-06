@@ -124,8 +124,8 @@ public class MainController {
 
 		exit.setOnAction(ae -> Platform.exit());
 		min.setOnAction(ae -> ((Stage) min.getScene().getWindow()).setIconified(true));
-//		developer.setOnMousePressed(ae -> hostServices.resolveURI(hostServices.getDocumentBase(),
-//				"https://github.com/syedmohin/Store.git"));
+		developer.setOnMousePressed(ae -> hostServices.resolveURI(hostServices.getDocumentBase(),
+				"https://github.com/syedmohin/Store.git"));
 		logout.setOnAction(ae -> logout());
 		logout.setCancelButton(true);
 		nameLabel.setText(System.getProperty("name", "isDone Solution!!"));
